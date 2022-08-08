@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onBeforeMount } from 'vue'
+import { ref, reactive, onBeforeMount, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getMenuData } from '@/business/getMenuData'
 
@@ -55,6 +55,18 @@ const toSelect = ({
 }
 
 /* 监听路由变化 */
+/* watch(WatcherSource, Callback, [WatchOptions]) */
+/* WatcherSource：监听数据 */ /* Callback:监听回调 */ /* [WatchOptions]：配置项，例如打开深度监听或首次页面加载就执行一遍 */
+watch(
+  () => route,
+  (newVal, oldVal) => {
+    console.log(newVal, oldVal)
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 </script>
 
 <style scoped>

@@ -5,25 +5,34 @@
   <div>计算属性： {{ fullName }}</div>
   <div>父组件传入子组件的message值： {{ props.message }}</div>
   <div>父组件传入子组件的message2值： {{ props.message2 }}</div>
-
   <button @click="close">给父组件发送自定义事件</button>
+
+  <div>count:{{ count }}</div>
+  <button @click="addOne">count+1</button>
+
+  <div>:{{ arr }}</div>
+  <button @click="addArr">arr+1</button>
 </template>
 
-<script setup>
-import { ref, reactive, toRefs, computed } from 'vue'
+<script setup lang="ts">
+import { ref, reactive, toRefs, computed, watch } from 'vue'
 
-// 定义响应式数据
+/* 定义响应式数据 */
 const data = reactive({
   name: 'xsj',
   age: 23,
   job: '前端开发工程师'
 })
 
+let count = ref(1)
+
+const arr = reactive(['1', '2', '3'])
+
 const company = ref('深圳易伙科技有限责任公司')
 
 const { name, age, job } = toRefs(data)
 
-// methods配置在vue3中的写法
+/* methods配置在vue3中的写法 */
 const changeAge = () => {
   console.log('我是changeAge')
   // age.value += 1
@@ -33,12 +42,20 @@ const changeName = () => {
   name.value += '-'
 }
 
-// 计算属性的写法，引入computed Api
+const addOne = () => {
+  count.value += 1
+}
+
+const addArr = () => {
+  arr.push(`${arr.length + 1}`)
+}
+
+/* 计算属性的写法，引入computed Api */
 const fullName = computed(() => {
   return name.value + 'NB'
 })
 
-// props父子传值的使用，引入defineProps Api
+/* props父子传值的使用，引入defineProps Api */
 // 声明props
 const props = defineProps({
   message: {
@@ -53,20 +70,33 @@ const props = defineProps({
 
 // const props2 = defineProps(['message2'])
 
-// 子组件给父组件发送emit事件，使用defineEmits Api
+/* 子组件给父组件发送emit事件，使用defineEmits Api */
 const emit = defineEmits(['abc'])
 
 const close = () => {
   emit('abc', '898')
 }
+
+/* 使用watch监听响应式数据的变化 */
+/* 情况一：监听基本数据类型 */
+const watchCount = watch(count, (newVal, oldVal) => {
+  console.log('新值-旧值', newVal, oldVal)
+})
+/* 情况二： 监听对象变化 */
+const watchData = watch(
+  () => data,
+  (newVal, oldVal) => {
+    console.log('新旧值', newVal, oldVal)
+  }
+)
+/* 情况三： 监听数组变化 */
+const watchArr = watch(
+  () => [...arr],
+  (newVal, oldVal) => {
+    console.log('新旧值', newVal, oldVal)
+  }
+)
+/* 总结复杂数据监听时，若想获得旧值，源对象必须使用函数返回深拷贝后的对象 */
 </script>
-
-<!-- setup语法糖要想给组件设置name配置，则可以在添加一个script标签 -->
-
-<!-- <script lang="ts">
-export default {
-  name: 'Dome'
-}
-</script> -->
 
 <style lang="less" scoped></style>
