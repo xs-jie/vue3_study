@@ -8,7 +8,18 @@ import App from './App.vue'
 import router from './router'
 // 引入vuex
 import store from './store'
-
+// 引入并使用ant-design-vue,全局引入
+import antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+/* vue3版本的ant-design-vue需要引入图标才能使用 */
+import * as Icons from '@ant-design/icons-vue'
 
 // 创建App应用返回实例对象，注册vuex实例和路由实例对象，调用mount方法进行挂载
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App)
+app.use(store).use(router).use(antd).mount('#app')
+
+/* 想要全局使用图标，不用一个个导入 */
+const icons: any = Icons
+for (const i in icons) {
+  app.component(i, icons[i])
+}
