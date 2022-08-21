@@ -1,4 +1,4 @@
-interface menuData {
+export interface menuData {
   key: string
   path: string
   children?: Array<menuData>

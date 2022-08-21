@@ -1,6 +1,6 @@
 <template>
   <div id="menu">
-    <a-menu theme="dark" mode="inline" @select="toSelect">
+    <a-menu theme="dark" mode="inline" @select="toSelect" default-selectedKeys="['1']" default-openKeys="['1']">
       <!-- 遍历菜单数据 -->
       <div v-for="item in menuData" :key="item.key">
         <!-- 判断菜单是否有子菜单 ，只考虑二级菜单的情况-->

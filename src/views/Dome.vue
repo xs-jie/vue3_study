@@ -12,10 +12,15 @@
 
   <div>:{{ arr }}</div>
   <button @click="addArr">arr+1</button>
+
+  <div>使用provide的数据： {{ injectData.name }}</div>
+  <button @click="injectData.sonFunction()">调用provide注入的方法</button>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, toRefs, computed, watch } from 'vue'
+import { ref, reactive, toRefs, computed, watch, inject } from 'vue'
+/* setup语法糖中可以直接使用defineProps和defineEmits,不用在额外引入 */
+/* setup语法糖中能够直接写await语法，不需要写async */
 
 /* 定义响应式数据 */
 const data = reactive({
@@ -84,7 +89,7 @@ const watchCount = watch(count, (newVal, oldVal) => {
 })
 /* 情况二： 监听对象变化 */
 const watchData = watch(
-  () => data,
+  () => data.name,
   (newVal, oldVal) => {
     console.log('新旧值', newVal, oldVal)
   }
@@ -96,7 +101,17 @@ const watchArr = watch(
     console.log('新旧值', newVal, oldVal)
   }
 )
-/* 总结复杂数据监听时，若想获得旧值，源对象必须使用函数返回深拷贝后的对象 */
+/* 总结整个复杂数据监听时，若想获得旧值，源对象必须使用函数返回深拷贝后的对象 */
+
+/* 使用provide和inject */
+const injectData = inject('provideData')
+
+/* 使用defineExpose暴露数据 */
+defineExpose({
+  ...toRefs(data),
+  count,
+  changeName
+})
 </script>
 
 <style lang="less" scoped></style>
