@@ -23,3 +23,5 @@ const icons: any = Icons
 for (const i in icons) {
   app.component(i, icons[i])
 }
+
+/* 999999 */
