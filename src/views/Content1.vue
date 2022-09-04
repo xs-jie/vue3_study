@@ -13,10 +13,13 @@
       </div>
     </div>
   </div>
+  <!-- 微信登录组件 -->
+  <wechat-oauth></wechat-oauth>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import WechatOauth from '@/components/WechatOauth.vue'
 let isShow = ref(false)
 </script>
 

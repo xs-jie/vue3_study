@@ -21,6 +21,7 @@ map(['1', '4'], function (n) {
   return parseInt(n)
 })
 /* 泛型限制条件extends */
+
 function longest(a, b) {
   if (a.length < b.length) return b
   else return a
