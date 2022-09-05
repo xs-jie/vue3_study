@@ -13,10 +13,11 @@
       <div>_res:{{ _res }}</div>
     </div>
   </div>
+  <div id="code"></div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref, reactive, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 
@@ -25,17 +26,54 @@ const route = useRoute()
 
 const appid = 'wx9488e1ef8a3fa61a'
 const secret = 'bc7e33812e210391f8a71e37b3622f4b'
-const url = encodeURI('http://192.168.31.93:8080/')
+// const redirect_uri = encodeURIComponent(
+//   'https://5622-27-38-216-57.ap.ngrok.io/home/content1'
+// )
+const redirect_uri = encodeURIComponent('https://console.callzone.com.cn/#/')
 let code = ref('')
 let access_token = ref('')
 let refresh_token = ref('')
 let openid = ref('')
 let _res = reactive({})
 
-const url1 = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${url}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
-// const url1 = `https://open.weixin.qq.com/connect/qrconnect?appid=${appid}&redirect_uri=${url}&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect`
+/* 计算属性，判断当前浏览器是否是微信浏览器 */
+const isWechatBrowser = computed(() => {
+  let ua = window.navigator.userAgent.toLowerCase()
+  if (ua.indexOf('micromessenger') !== -1) {
+    return true
+  } else {
+    return false
+  }
+})
+
+const url1 = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+const _url1 = `https://open.weixin.qq.com/connect/qrconnect?appid=${appid}&redirect_uri=${redirect_uri}&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect`
 const wechatLogin = () => {
-  window.location.href = url1
+  if (isWechatBrowser.value) {
+    window.location.href = url1
+  } else {
+    setCode()
+    // window.location.href = _url1
+  }
+  // console.log(isWechatBrowser.value)
+}
+
+const setCode = () => {
+  const s = document.createElement('script')
+  s.type = 'text/javascript'
+  s.src = 'https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js'
+  const wxElement = document.body.appendChild(s)
+  wxElement.onload = function () {
+    var obj = new WxLogin({
+      id: 'code', // 需要显示的容器id
+      appid: appid, // 公众号appid wx*******
+      scope: 'snsapi_login', // 网页默认即可
+      redirect_uri: redirect_uri, // 授权成功后回调的url
+      state: 'STATE', // 可设置为简单的随机数加session用来校验
+      style: 'black', // 提供"black"、"white"可选。二维码的样式
+      href: '' // 外部css文件url，需要https
+    })
+  }
 }
 
 /* 获取到Code后，使用code换取access_token */
