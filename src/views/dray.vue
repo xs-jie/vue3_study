@@ -1,3 +1,13 @@
+<!--
+ * @Author: xsj 13592841305@163.com
+ * @Date: 2022-09-30 00:01:58
+ * @LastEditors: xsj 13592841305@163.com
+ * @LastEditTime: 2022-09-30 00:05:57
+ * @FilePath: \vue3_study\src\views\dray.vue
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by xsj 13592841305@163.com, All Rights Reserved. 
+-->
 <template>
   <ul class="list">
     <li
@@ -11,6 +21,7 @@
     >
       {{ item.label }}
     </li>
+    <!-- master分支最近代码！！！！！ -->
   </ul>
 </template>
 
