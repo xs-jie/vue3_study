@@ -18,10 +18,13 @@
     </div>
     <div class="box" v-else>dhjf</div>
   </div>
+
+  <dray></dray>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import dray from '@/views/dray.vue'
 const isShow = ref(true)
 const isShowModal = ref(false)
 
@@ -57,5 +60,8 @@ img {
 
 .box:hover .box-1 {
   display: block;
+}
+i {
+  font-size: 40px;
 }
 </style>

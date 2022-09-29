@@ -13,6 +13,8 @@ import antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 /* vue3版本的ant-design-vue需要引入图标才能使用 */
 import * as Icons from '@ant-design/icons-vue'
+/* 引入字体图标样式 */
+import './assets/fonts/iconfont.css'
 
 // 创建App应用返回实例对象，注册vuex实例和路由实例对象，调用mount方法进行挂载
 const app = createApp(App)
