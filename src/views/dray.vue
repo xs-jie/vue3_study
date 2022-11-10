@@ -1,8 +1,8 @@
 <!--
  * @Author: xsj 13592841305@163.com
  * @Date: 2022-09-30 00:01:58
- * @LastEditors: xsj 13592841305@163.com
- * @LastEditTime: 2022-09-30 00:05:57
+ * @LastEditors: zhuyijing zhuyijing@yihuosoft.com
+ * @LastEditTime: 2022-11-10 12:11:25
  * @FilePath: \vue3_study\src\views\dray.vue
  * @Description: 
  * 
@@ -31,16 +31,15 @@ const dragIndex = ref('')
 const enterIndex = ref('')
 let list = reactive([
   {
-    label: '列表1'
+    label: '列表1',
   },
   {
-    label: '列表2'
+    label: '列表2',
   },
   {
-    label: '列表3'
-  }
+    label: '列表3',
+  },
 ])
-
 
 const dragstart = (index) => {
   dragIndex.value = index

@@ -1,6 +1,12 @@
 <template>
   <div id="menu">
-    <a-menu theme="dark" mode="inline" @select="toSelect" default-selectedKeys="['1']" default-openKeys="['1']">
+    <a-menu
+      theme="dark"
+      mode="inline"
+      @select="toSelect"
+      default-selectedKeys="['1']"
+      default-openKeys="['1']"
+    >
       <!-- 遍历菜单数据 -->
       <div v-for="item in menuData" :key="item.key">
         <!-- 判断菜单是否有子菜单 ，只考虑二级菜单的情况-->
@@ -38,19 +44,19 @@ const route = useRoute()
 const toSelect = ({
   item,
   key,
-  selectedKeys
+  selectedKeys,
 }: {
   item: any
   key: string
   selectedKeys: string[]
 }) => {
-  console.log(item)
-  console.log(key)
-  console.log(selectedKeys)
+  // console.log(item)
+  // console.log(key)
+  // console.log(selectedKeys)
   // selectedKeys1 += 1
   number.value += 1
   router.push({
-    path: `content${key}`
+    path: `content${key}`,
   })
 }
 
@@ -60,11 +66,12 @@ const toSelect = ({
 watch(
   () => route,
   (newVal, oldVal) => {
-    console.log(newVal, oldVal)
+    // console.log(newVal, oldVal)
+    console.log(newVal.path, '当前路由')
   },
   {
     deep: true,
-    immediate: true
+    immediate: true,
   }
 )
 </script>

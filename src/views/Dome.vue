@@ -26,7 +26,7 @@ import { ref, reactive, toRefs, computed, watch, inject } from 'vue'
 const data = reactive({
   name: 'xsj',
   age: 23,
-  job: '前端开发工程师'
+  job: '前端开发工程师',
 })
 
 let count = ref(1)
@@ -37,7 +37,7 @@ const company = ref('深圳易伙科技有限责任公司')
 
 const { name, age, job } = toRefs(data)
 
-/* methods配置在vue3中的写法 */
+/* methods配置中的方法在vue3中的写法 */
 const changeAge = () => {
   console.log('我是changeAge')
   // age.value += 1
@@ -65,19 +65,19 @@ const fullName = computed(() => {
 const props = defineProps({
   message: {
     type: String,
-    default: '没有传message'
+    default: '没有传message',
   },
   message2: {
     type: String,
-    default: ''
-  }
+    default: '',
+  },
 })
 
 // const props2 = defineProps(['message2'])
 
 /* 子组件给父组件发送emit事件，使用defineEmits Api */
-const emit = defineEmits(['abc'])
-
+const emit = defineEmits(['abc']) /* 数组中放自定义事件名 */
+/* 调用自定义事件 */
 const close = () => {
   emit('abc', '898')
 }
@@ -110,7 +110,7 @@ const injectData = inject('provideData')
 defineExpose({
   ...toRefs(data),
   count,
-  changeName
+  changeName,
 })
 </script>
 

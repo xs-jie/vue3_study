@@ -33,6 +33,12 @@ export function getMenuData(): Array<menuData> {
       key: '3',
       path: 'content3',
       icon: 'icon3'
+    },
+    {
+      name: '菜单四',
+      key: '4',
+      path: 'content4',
+      icon: 'icon4'
     }
   ]
 }
