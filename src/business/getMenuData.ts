@@ -39,6 +39,12 @@ export function getMenuData(): Array<menuData> {
       key: '4',
       path: 'content4',
       icon: 'icon4'
+    },
+    {
+      name: 'vue3: v-modal进行父子组件间数据的绑定',
+      key: '5',
+      path: 'content5',
+      icon: 'icon5'
     }
   ]
 }

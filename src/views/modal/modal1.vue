@@ -4,15 +4,27 @@
     title="vue3中使用vue2中(.sync)的方法"
     @ok="handleOk"
     @cancel="handleCancel"
-  ></a-modal>
+  >
+    <div>
+      {{ computedName('再见') }}
+    </div></a-modal
+  >
 </template>
 
 <script setup>
+import { computed, ref } from 'vue'
 const pros = defineProps({
   visible: {
     type: Boolean,
     default: false,
   },
+})
+
+const name = ref('Vue')
+/* ----------------------------------------------------------- */
+/* vue3计算属性传参 */
+const computedName = computed(() => (value) => {
+  return name.value + value
 })
 
 /* 使用（'update: 父组件传入变量'）当作自定义事件名称 */

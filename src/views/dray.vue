@@ -1,13 +1,4 @@
-<!--
- * @Author: xsj 13592841305@163.com
- * @Date: 2022-09-30 00:01:58
- * @LastEditors: zhuyijing zhuyijing@yihuosoft.com
- * @LastEditTime: 2022-11-10 12:11:25
- * @FilePath: \vue3_study\src\views\dray.vue
- * @Description: 
- * 
- * Copyright (c) 2022 by xsj 13592841305@163.com, All Rights Reserved. 
--->
+
 <template>
   <ul class="list">
     <li
@@ -26,9 +17,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-const dragIndex = ref('')
-const enterIndex = ref('')
+import { ref, reactive, Ref } from 'vue'
+const dragIndex: Ref<number> = ref(0)
+const enterIndex: Ref<number> = ref(0)
 let list = reactive([
   {
     label: '列表1',
@@ -41,20 +32,20 @@ let list = reactive([
   },
 ])
 
-const dragstart = (index) => {
+const dragstart = (index: number) => {
   dragIndex.value = index
 }
 
-const dragenter = (e, index) => {
+const dragenter = (e: Event, index: number) => {
   e.preventDefault()
-  if (dragIndex !== index) {
-    const source = list[dragIndex]
-    list.splice(dragIndex, 1)
+  if (dragIndex.value !== index) {
+    const source = list[dragIndex.value]
+    list.splice(dragIndex.value, 1)
     list.splice(index, 0, source)
   }
 }
 
-const dragover = (e, index) => {
+const dragover = (e: Event, index: number) => {
   e.preventDefault()
 }
 </script>

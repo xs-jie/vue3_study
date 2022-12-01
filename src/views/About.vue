@@ -15,10 +15,10 @@
 <script setup lang="ts">
 // 在Vue3中的setup语法糖中，子组件只需要引入就能使用，不需要注册
 import Demo from '@/views/Dome.vue'
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 
-const message = ref('你真是个叼毛！！')
-const message2 = ref('你真是个扑街！！')
+const message: Ref<string> = ref('你真是个叼毛！！')
+const message2: Ref<string> = ref('你真是个扑街！！')
 
 const demoRef = ref() /* 通过ref绑定子组件 */
 
