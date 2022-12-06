@@ -35,6 +35,7 @@ const handleCancel = () => {
 }
 const handleOk = () => {
   console.log('ok')
+  emits('update:visible', false)
 }
 </script>
 

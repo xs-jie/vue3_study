@@ -51,6 +51,12 @@ export function getMenuData(): Array<menuData> {
       key: '6',
       path: 'content6',
       icon: 'icon6'
+    },
+    {
+      name: 'vue3: 操作dom',
+      key: '7',
+      path: 'content7',
+      icon: 'icon7'
     }
   ]
 }

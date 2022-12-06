@@ -23,7 +23,7 @@
     </template>
   </slotComponent> -->
 
-  <a-button @click="request">使用全家API</a-button>
+  <a-button @click="request">使用全局API</a-button>
 </template>
 
 <script setup lang="ts">
