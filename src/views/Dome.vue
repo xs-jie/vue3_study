@@ -40,7 +40,7 @@ import {
 const keyword = ref<string>('')
 let results = reactive<any>([])
 
-/* 副作用（） */
+/* 副作用（） 无需指定监听指定的变量，只要内容中使用的某一个变量发生变化，此段代码就会自动执行，并且创建的时候会自动执行一次*/
 const stop = watchEffect(() => {
   // fetch(`https://api.example.com/search?q=${keyword.value}`)
   //   .then((res) => res.json())

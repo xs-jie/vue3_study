@@ -6,9 +6,9 @@
 
   <h2>vue3 插槽使用</h2>
   <slotComponent :data="data">
-    <template #one="{ text, msg, record }"
+    <!-- <template #one="{ text, msg, record }"
       >{{ text }}----{{ msg }}----{{ record.name + record.msg }}</template
-    >
+    > -->
     <template #two="{ text, msg, record }"
       >{{ text }}----{{ msg }}----{{ record.name + record.msg }}</template
     >
@@ -44,21 +44,20 @@ const data = reactive([
   },
 ])
 
-// const data2 = reactive([
-//   {
-//     name: 'three',
-//     msg: 'this is a new three',
-//   },
-//   {
-//     name: 'four',
-//     msg: 'this is a new four',
-//   },
-// ])
+const data2 = reactive([
+  {
+    name: 'three',
+    msg: 'this is a new three',
+  },
+  {
+    name: 'four',
+    msg: 'this is a new four',
+  },
+])
 const { proxy } = getCurrentInstance()
 const request = () => {
   proxy.$axios.get('http://192.168.138')
 }
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>
